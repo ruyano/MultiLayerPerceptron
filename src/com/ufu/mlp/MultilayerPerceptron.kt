@@ -179,7 +179,7 @@ class MultilayerPerceptron(
         for (subject in subjectsForAvaliation) {
             val result = forwardPass(subject.attributes)
             println("Entrada: ${subject.attributes}")
-            println("Calculado: $result")
+            println("Calculado: [${result[0].roundToInt()}, ${result[1].roundToInt()}, ${result[2].roundToInt()}] = ${senioridade(result)}")
             contagem++
             var erro = false
             for ((i, target) in subject.targetResult.withIndex()) {
@@ -191,6 +191,19 @@ class MultilayerPerceptron(
         }
         val acuracia = 100.0 - erros.toDouble() / contagem.toDouble() * 100
         println("Testes: $contagem erros: $erros acurácia: $acuracia")
+    }
+
+    private fun senioridade(array: ArrayList<Double>) : String {
+        val c1 = array[0].roundToInt()
+        val c2 = array[1].roundToInt()
+        val c3 = array[2].roundToInt()
+        if (c1 == 1 && c2 == 0 && c3 == 0) {
+            return "Senior"
+        } else if (c1 == 0 && c2 == 1 && c3 == 0) {
+            return "Pleno"
+        } else {
+            return "Junior"
+        }
     }
 
     // gera um número randomico entre -1 e 1

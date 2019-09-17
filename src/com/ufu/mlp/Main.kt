@@ -10,7 +10,7 @@ fun main() {
     // criar rede neural mlp com 3 camadas, camada de entrada com 4 perceptrons, camada interna com 8 perceptrons e camada de saida com 3 perceptrons
     val multilayerPerceptron = MultilayerPerceptron(42)
     multilayerPerceptron.layers.add(Layer(4, null, multilayerPerceptron))
-    multilayerPerceptron.layers.add(Layer(8, Sigmoid(), multilayerPerceptron))
+    multilayerPerceptron.layers.add(Layer(4, Sigmoid(), multilayerPerceptron))
     multilayerPerceptron.layers.add(Layer(3, Sigmoid(), multilayerPerceptron))
 
     // imprimir dados da rede gerada
@@ -44,12 +44,12 @@ fun readFromFile(fileName: String) : ArrayList<Subject>  {
                 subject.attributes.add(doubleValue)
             } ?: run {
                 when (part) {
-                    "Iris-setosa" -> {
+                    "Senior" -> {
                         subject.targetResult.add(0.1)
                         subject.targetResult.add(0.0)
                         subject.targetResult.add(0.0)
                     }
-                    "Iris-versicolor" -> {
+                    "Pleno" -> {
                         subject.targetResult.add(0.0)
                         subject.targetResult.add(0.1)
                         subject.targetResult.add(0.0)

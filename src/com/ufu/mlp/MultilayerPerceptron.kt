@@ -45,7 +45,7 @@ class MultilayerPerceptron(
             finalValue += sinapseBias.weight
             perceptron.input = finalValue
             layer.activation?.let {
-                perceptron.value = layer.activation.execute(perceptron.input)
+                perceptron.value = it.execute(perceptron.input)
             }
         }
     }
@@ -157,14 +157,14 @@ class MultilayerPerceptron(
 
     // função que executa o treinamento da rede mlp
     fun fit(dataset: ArrayList<Subject>, epochs: Int, learningRate: Double) {
-
         for (epoch in 0 until epochs) {
             var mse = 0.0
             for (subject in dataset) {
                 val outputs = forwardPass(subject.attributes)
-//                println("output ${dataset.indexOf(subject)}: $outputs")
-                for (z in 0 until outputs.size) {
-                    mse += (subject.targetResult[z] - outputs[z]).pow(2)
+                println("Entrada: ${subject.attributes} | Esperado: ${senioridade(subject.targetResult)}")
+                println("Calculado: [${outputs[0].roundToInt()}, ${outputs[1].roundToInt()}, ${outputs[2].roundToInt()}] = ${senioridade(outputs)}")
+                for ((i,z) in outputs.withIndex()) {
+                    mse += (subject.targetResult[i] - z).pow(2)
                 }
                 backPropagation(subject.targetResult, learningRate)
             }
@@ -178,7 +178,7 @@ class MultilayerPerceptron(
         var contagem = 0
         for (subject in subjectsForAvaliation) {
             val result = forwardPass(subject.attributes)
-            println("Entrada: ${subject.attributes}")
+            println("Entrada: ${subject.attributes} | Esperado: ${senioridade(subject.targetResult)}")
             println("Calculado: [${result[0].roundToInt()}, ${result[1].roundToInt()}, ${result[2].roundToInt()}] = ${senioridade(result)}")
             contagem++
             var erro = false
@@ -197,12 +197,12 @@ class MultilayerPerceptron(
         val c1 = array[0].roundToInt()
         val c2 = array[1].roundToInt()
         val c3 = array[2].roundToInt()
-        if (c1 == 1 && c2 == 0 && c3 == 0) {
-            return "Senior"
+        return if (c1 == 1 && c2 == 0 && c3 == 0) {
+            "Senior"
         } else if (c1 == 0 && c2 == 1 && c3 == 0) {
-            return "Pleno"
+            "Pleno"
         } else {
-            return "Junior"
+            "Junior"
         }
     }
 

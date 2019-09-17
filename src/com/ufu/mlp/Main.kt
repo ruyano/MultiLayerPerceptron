@@ -45,19 +45,19 @@ fun readFromFile(fileName: String) : ArrayList<Subject>  {
             } ?: run {
                 when (part) {
                     "Senior" -> {
-                        subject.targetResult.add(0.1)
+                        subject.targetResult.add(1.0)
                         subject.targetResult.add(0.0)
                         subject.targetResult.add(0.0)
                     }
                     "Pleno" -> {
                         subject.targetResult.add(0.0)
-                        subject.targetResult.add(0.1)
+                        subject.targetResult.add(1.0)
                         subject.targetResult.add(0.0)
                     }
                     else -> {
                         subject.targetResult.add(0.0)
                         subject.targetResult.add(0.0)
-                        subject.targetResult.add(0.1)
+                        subject.targetResult.add(1.0)
                     }
                 }
             }

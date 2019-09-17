@@ -45,19 +45,19 @@ fun readFromFile(fileName: String) : ArrayList<Subject>  {
             } ?: run {
                 when (part) {
                     "Iris-setosa" -> {
-                        subject.targetResult.add(0.1)
+                        subject.targetResult.add(1.0)
                         subject.targetResult.add(0.0)
                         subject.targetResult.add(0.0)
                     }
                     "Iris-versicolor" -> {
                         subject.targetResult.add(0.0)
-                        subject.targetResult.add(0.1)
+                        subject.targetResult.add(1.0)
                         subject.targetResult.add(0.0)
                     }
                     else -> {
                         subject.targetResult.add(0.0)
                         subject.targetResult.add(0.0)
-                        subject.targetResult.add(0.1)
+                        subject.targetResult.add(1.0)
                     }
                 }
             }

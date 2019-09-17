@@ -3,14 +3,13 @@ import com.ufu.mlp.MultilayerPerceptron
 import com.ufu.mlp.Sigmoid
 import com.ufu.mlp.Subject
 import java.io.File
-import kotlin.math.roundToInt
 
 fun main() {
 
     // criar rede neural mlp com 3 camadas, camada de entrada com 4 perceptrons, camada interna com 8 perceptrons e camada de saida com 3 perceptrons
     val multilayerPerceptron = MultilayerPerceptron(42)
     multilayerPerceptron.layers.add(Layer(4, null, multilayerPerceptron))
-    multilayerPerceptron.layers.add(Layer(4, Sigmoid(), multilayerPerceptron))
+    multilayerPerceptron.layers.add(Layer(10, Sigmoid(), multilayerPerceptron))
     multilayerPerceptron.layers.add(Layer(3, Sigmoid(), multilayerPerceptron))
 
     // imprimir dados da rede gerada

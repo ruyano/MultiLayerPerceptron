@@ -17,6 +17,13 @@ class MultilayerPerceptron(
         Layer()
     )
 
+    constructor() : this(
+            arrayListOf(),
+            Random,
+            Layer(),
+            Layer()
+    )
+
     // função que executa a passagem dos dados pelo mlp
     fun forwardPass(input: ArrayList<Double>) : ArrayList<Double> {
         for (layer in layers) {

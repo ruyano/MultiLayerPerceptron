@@ -168,8 +168,8 @@ class MultilayerPerceptron(
             var mse = 0.0
             for (subject in dataset) {
                 val outputs = forwardPass(subject.attributes)
-                println("Entrada: ${subject.attributes} | Esperado: ${senioridade(subject.targetResult)}")
-                println("Calculado: [${outputs[0].roundToInt()}, ${outputs[1].roundToInt()}, ${outputs[2].roundToInt()}] = ${senioridade(outputs)}")
+//                println("Entrada: ${subject.attributes} | Esperado: ${senioridade(subject.targetResult)}")
+//                println("Calculado: [${outputs[0].roundToInt()}, ${outputs[1].roundToInt()}, ${outputs[2].roundToInt()}] = ${senioridade(outputs)}")
                 for ((i,z) in outputs.withIndex()) {
                     mse += (subject.targetResult[i] - z).pow(2)
                 }
@@ -185,8 +185,6 @@ class MultilayerPerceptron(
         var contagem = 0
         for (subject in subjectsForAvaliation) {
             val result = forwardPass(subject.attributes)
-            println("Entrada: ${subject.attributes} | Esperado: ${senioridade(subject.targetResult)}")
-            println("Calculado: [${result[0].roundToInt()}, ${result[1].roundToInt()}, ${result[2].roundToInt()}] = ${senioridade(result)}")
             contagem++
             var erro = false
             for ((i, target) in subject.targetResult.withIndex()) {
@@ -194,6 +192,9 @@ class MultilayerPerceptron(
             }
             if (erro) {
                 erros++
+                println("Erro $erro")
+                println("Entrada: ${subject.attributes} | Esperado: ${senioridade(subject.targetResult)}")
+                println("Calculado: [${result[0].roundToInt()}, ${result[1].roundToInt()}, ${result[2].roundToInt()}] = ${senioridade(result)}")
             }
         }
         val acuracia = 100.0 - erros.toDouble() / contagem.toDouble() * 100

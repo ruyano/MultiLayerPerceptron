@@ -1,9 +1,9 @@
 package com.ufu.mlp
 
 class Sinapse(
-    val finalPerceptron: Perceptron,
-    val weight: Double = 0.0,
-    val gradient: Double? = null
+        val finalPerceptron: Perceptron,
+        var weight: Double = 0.0,
+        var gradient: Double = 0.0
 ) {
 
     override fun toString(): String {

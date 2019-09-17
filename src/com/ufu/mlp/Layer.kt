@@ -1,13 +1,13 @@
 package com.ufu.mlp
 
 class Layer(
-    val activation: Activation = Sigmoid(),
+    val activation: Activation? = null,
     val perceptrons: ArrayList<Perceptron> = arrayListOf(),
     val number: Int = 0,
     val bias: Perceptron = Perceptron()
 ) {
 
-    constructor(perceptronsAmount: Int, activation: Activation, multilayerPerceptron: MultilayerPerceptron) : this(
+    constructor(perceptronsAmount: Int, activation: Activation?, multilayerPerceptron: MultilayerPerceptron) : this(
         activation,
         arrayListOf(),
         multilayerPerceptron.layers.size + 1,
